@@ -54,10 +54,10 @@ export type Language = 'en' | 'it';
 export const translations = {
   en: {
     // Header & Steps
-    appName: "World Cup 2026", // wait, the prompt asks for "World Cup 2026 Semi-Finals Predictor" style
+    appName: "BPER FantaMondiale", // wait, the prompt asks for "World Cup 2026 Semi-Finals Predictor" style
     officialPredictor: "Official Prediction Engine",
-    wcPredictor: "World Cup 2026",
-    sfPredictor: "Semi-Finals Predictor",
+    wcPredictor: "BPER FantaMondiale",
+    sfPredictor: "BPER FantaMondiale",
     stepSelection: "SELECTION",
     stepSemis: "2. SEMIS",
     stepFinal: "3. FINAL",
@@ -72,7 +72,7 @@ export const translations = {
 
     // Step 1: Selection
     selectTitle: "Select 4 Semi-Finalists",
-    selectDesc: "Evaluate the Groups below. Select exactly four teams you believe will progress to the World Cup semi-finals.",
+    selectDesc: "Evaluate the national teams below. Select exactly four teams you believe will progress to the World Cup semi-finals.",
     progression: "Selection Progression",
     completeMsg: "✓ Ready! Press the prediction button below to continue.",
     selectMore: "Select {0} more team{1} to activate matchups.",
@@ -139,7 +139,7 @@ export const translations = {
     predWinner: "Winner: {0}",
     predScore: "Score: {0} - {1}",
     predictedChampion: "🏆 Predicted World Champion",
-    cupPrognosis: "FIFA WORLD CUP 2026 PROGNOSIS Champion",
+    cupPrognosis: "BPER FantaMondiale Champion",
     secureVerified: "SECURE SYSTEM VERIFIED",
     exportPdf: "Export as PDF (Certificate)",
     exportPng: "Export as PNG (Social Share)",
@@ -223,10 +223,10 @@ export const translations = {
   },
   it: {
     // Header & Steps
-    appName: "Mondiali 2026",
+    appName: "BPER FantaMondiale",
     officialPredictor: "Motore Pronostici Ufficiale",
-    wcPredictor: "Coppa del Mondo 2026",
-    sfPredictor: "Predittore Semifinali",
+    wcPredictor: "BPER FantaMondiale",
+    sfPredictor: "BPER FantaMondiale",
     stepSelection: "SELEZIONE",
     stepSemis: "2. SEMIFINALI",
     stepFinal: "3. FINALE",
@@ -241,7 +241,7 @@ export const translations = {
 
     // Step 1: Selection
     selectTitle: "Seleziona 4 Semifinaliste",
-    selectDesc: "Valuta i gironi qui sotto. Seleziona esattamente quattro squadre che ritieni arriveranno alle semifinali della Coppa del Mondo.",
+    selectDesc: "Valuta le squadre nazionali qui sotto. Seleziona esattamente quattro squadre che ritieni arriveranno alle semifinali della Coppa del Mondo.",
     progression: "Progresso Selezione",
     completeMsg: "✓ Pronto! Fai clic sul pulsante qui sotto per continuare.",
     selectMore: "Seleziona altre {0} squadr{1} per sbloccare gli abbinamenti.",
@@ -265,7 +265,7 @@ export const translations = {
 
     // Step 2: Semis predictions
     semisTitle: "Pronostica le Semifinali",
-    semisDesc: "Scegli il vincitore diretto (1 o 2) o pronostica il punteggio esatto dei tempi regolamentari!",
+    semisDesc: "Scegli il vincitore diretto (1 o 2) o pronostica il punteggio esatto!",
     semi1Matchup: "Semifinale 1",
     semi2Matchup: "Semifinale 2",
     winnerOrScore: "Pronostica Vincitore o Punteggio",
@@ -308,7 +308,7 @@ export const translations = {
     predWinner: "Vincitore: {0}",
     predScore: "Punteggio: {0} - {1}",
     predictedChampion: "🏆 Campione Mondiale Pronosticato",
-    cupPrognosis: "Campione d'America - Pronostico Coppa del Mondo 2026",
+    cupPrognosis: "Campione BPER FantaMondiale",
     secureVerified: "SISTEMA SICURO VERIFICATO",
     exportPdf: "Esporta PDF (Certificato)",
     exportPng: "Esporta PNG (Condivisione)",

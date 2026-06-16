@@ -315,9 +315,10 @@ export default function BetSlip({ state, onPlayFinalGame, onResetTournament, lan
             <Ticket className="w-3.5 h-3.5 text-yellow-500" />
             {translate('officialSlip', lang)}
           </div>
-          <h1 className="text-2xl md:text-3xl font-extrabold font-sans tracking-tight uppercase leading-none text-white flex flex-col sm:flex-row gap-1.5 justify-center items-center">
-            <span className="text-yellow-500 font-display font-bold">{translate('wcPredictor', lang)}</span>
-            <span className="text-slate-200 font-sans font-light">{translate('sfPredictor', lang)}</span>
+          <h1 className="text-2xl md:text-3xl font-extrabold font-sans tracking-tight uppercase leading-none text-white flex gap-2 justify-center items-center">
+            <span className="text-xl select-none">⚽</span>
+            <span className="text-yellow-500 font-display font-bold">BPER</span>
+            <span className="text-slate-200 font-sans font-light">FantaMondiale</span>
           </h1>
           <p className="text-white/50 text-xs mt-2 max-w-sm leading-relaxed">
             {translate('fictionalSlipDesc', lang)}
@@ -615,7 +616,14 @@ export default function BetSlip({ state, onPlayFinalGame, onResetTournament, lan
                   Oggetto:
                 </p>
                 <p className="font-bold text-white font-mono">
-                  Coppa del mondo 2026
+                  BPER FantaMondiale 2026
+                </p>
+                <div className="h-[1px] bg-white/10 my-2" />
+                <p className="text-white/70">
+                  Data di scadenza:
+                </p>
+                <p className="font-bold text-yellow-500 font-mono">
+                  30 giugno
                 </p>
               </div>
 

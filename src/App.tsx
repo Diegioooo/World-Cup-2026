@@ -470,17 +470,17 @@ export default function App() {
         <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 flex items-center justify-between gap-4">
           
           {/* Logo brand */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3" id="branding-container">
             <div className="w-10 h-10 bg-gradient-to-tr from-yellow-500 through-white/10 to-transparent rounded-full flex items-center justify-center border border-white/20 shadow-sm relative group">
               <div className="absolute inset-0 rounded-full bg-yellow-500/10 blur-[4px] opacity-0 group-hover:opacity-100 transition-opacity" />
-              <Trophy className="w-4.5 h-4.5 text-yellow-400 relative z-10" />
+              <span className="text-xl relative z-10 leading-none">⚽</span>
             </div>
             <div className="text-left leading-none">
               <span className="hidden sm:inline-block text-[9px] text-yellow-500/80 uppercase tracking-widest font-mono font-bold">
-                {translate('officialPredictor', language)}
+                {language === 'it' ? 'FANTASY GAME UFFICIALE' : 'OFFICIAL FANTASY GAME'}
               </span>
-              <h1 className="font-sans font-black text-white tracking-tight uppercase text-sm sm:text-base md:text-lg leading-tight">
-                <span className="text-yellow-500 font-display font-bold">2026</span> <span className="text-slate-200 font-light font-sans">{translate('sfPredictor', language)}</span>
+              <h1 className="font-sans font-black text-white tracking-tight uppercase text-base sm:text-lg leading-none">
+                <span className="text-yellow-500 font-display font-bold">BPER</span> <span className="text-slate-200 font-light font-sans">FantaMondiale</span>
               </h1>
             </div>
           </div>
@@ -620,80 +620,57 @@ export default function App() {
               </div>
             </div>
 
-            {/* Bento-grid choices of Groups */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {groupsData.map((group) => {
-                // Number of chosen teams inside of this specific group
-                const selectedInGroupCount = group.teams.filter(t =>
-                  state.semiFinalists.some(sf => sf.name === t.name)
-                ).length;
+            {/* Flat Alphabetical Grid of Choices */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4.5 bg-white/[0.02] border border-white/10 p-6 rounded-3xl backdrop-blur-md shadow-lg">
+              {(() => {
+                const flattenedTeams = groupsData.flatMap(g => g.teams);
+                const uniqueTeamsMap = new Map<string, Team>();
+                flattenedTeams.forEach(t => {
+                  uniqueTeamsMap.set(t.name, t);
+                });
+                const uniqueSortedTeams = Array.from(uniqueTeamsMap.values()).sort((a, b) => {
+                  const nameA = translateTeam(a.name, language);
+                  const nameB = translateTeam(b.name, language);
+                  return nameA.localeCompare(nameB, language === 'it' ? 'it' : 'en');
+                });
 
-                const groupLetter = group.name.substring(group.name.length - 1);
-                const groupLabel = language === 'it' ? `Gruppo ${groupLetter}` : `Group ${groupLetter}`;
+                return uniqueSortedTeams.map((team) => {
+                  const isSelected = state.semiFinalists.some(sf => sf.name === team.name);
+                  const isLimitReached = state.semiFinalists.length >= 4;
 
-                return (
-                  <div
-                    key={group.name}
-                    className={`bg-white/[0.03] rounded-3xl border p-4.5 relative flex flex-col backdrop-blur-md shadow-sm transition-all duration-300 ${
-                      selectedInGroupCount > 0
-                        ? 'border-yellow-500/25 ring-1 ring-yellow-500/10 shadow-[0_4px_24px_rgba(234,179,8,0.03)]'
-                        : 'border-white/10 hover:border-white/20'
-                    }`}
-                  >
-                    {/* Header group card label */}
-                    <div className="flex justify-between items-center pb-2.5 mb-3 border-b border-white/5">
-                      <span className="font-extrabold font-sans text-xs tracking-wider text-slate-200 uppercase">
-                        {groupLabel}
-                      </span>
-                      {selectedInGroupCount > 0 && (
-                        <span className="text-[9px] bg-yellow-500/15 border border-yellow-500/30 px-2 py-0.5 rounded-md text-yellow-500 font-mono font-bold uppercase">
-                          {translate(selectedInGroupCount === 1 ? 'groupChoice' : 'groupChoices', language, [selectedInGroupCount])}
+                  return (
+                    <button
+                      key={team.name}
+                      onClick={() => handleTeamClick(team)}
+                      disabled={!isSelected && isLimitReached}
+                      className={`w-full flex items-center justify-between p-2.5 rounded-xl border text-left transition-all duration-300 relative overflow-hidden group/team cursor-pointer ${
+                        isSelected
+                          ? 'bg-yellow-500/15 border-yellow-500/40 text-yellow-400 shadow-[0_2px_10px_rgba(234,179,8,0.05)] font-bold'
+                          : !isSelected && isLimitReached
+                          ? 'opacity-35 border-white/5 bg-white/5 text-white/40 cursor-not-allowed'
+                          : 'bg-white/5 border-white/10 hover:border-white/25 text-white/90 hover:bg-white/10'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2.5 z-10 text-left">
+                        <FlagIcon country={team.name} className="w-7 h-7 flex-shrink-0" />
+                        <span className="font-sans font-semibold text-xs truncate max-w-[130px]">
+                          {translateTeam(team.name, language)}
                         </span>
-                      )}
-                    </div>
+                      </div>
 
-                    {/* Group Team list items buttons */}
-                    <div className="flex flex-col gap-2">
-                       {group.teams.map((team) => {
-                         const isSelected = state.semiFinalists.some(sf => sf.name === team.name);
-                         const isLimitReached = state.semiFinalists.length >= 4;
-
-                         return (
-                           <button
-                             key={team.name}
-                             onClick={() => handleTeamClick(team)}
-                             disabled={!isSelected && isLimitReached}
-                             className={`w-full flex items-center justify-between p-2.5 rounded-xl border text-left transition-all duration-300 relative overflow-hidden group/team cursor-pointer ${
-                               isSelected
-                                 ? 'bg-yellow-500/15 border-yellow-500/40 text-yellow-400 shadow-[0_2px_10px_rgba(234,179,8,0.05)] font-bold'
-                                 : !isSelected && isLimitReached
-                                 ? 'opacity-35 border-white/5 bg-white/5 text-white/40 cursor-not-allowed'
-                                 : 'bg-white/5 border-white/10 hover:border-white/25 text-white/90 hover:bg-white/10'
-                             }`}
-                           >
-                             <div className="flex items-center gap-2.5 z-10">
-                               <FlagIcon country={team.name} className="w-7 h-7" />
-                               <span className="font-sans font-semibold text-xs truncate max-w-[130px]">
-                                 {translateTeam(team.name, language)}
-                               </span>
-                             </div>
-
-                             <div className="z-10 flex items-center">
-                               {isSelected ? (
-                                 <CheckCircle2 className="w-5 h-5 text-yellow-500 animate-zoom-in" />
-                               ) : (
-                                 <span className="text-[9px] text-white/55 font-mono font-bold bg-white/5 px-2 py-0.5 rounded-md border border-white/10 group-hover/team:border-white/30 transition-colors uppercase">
-                                   {translate('chooseBtn', language)}
-                                 </span>
-                               )}
-                             </div>
-                           </button>
-                         );
-                       })}
-                    </div>
-                  </div>
-                );
-              })}
+                      <div className="z-10 flex items-center flex-shrink-0">
+                        {isSelected ? (
+                          <CheckCircle2 className="w-5 h-5 text-yellow-500 animate-zoom-in" />
+                        ) : (
+                          <span className="text-[9px] text-white/55 font-mono font-bold bg-white/5 px-2 py-0.5 rounded-md border border-white/10 group-hover/team:border-white/30 transition-colors uppercase">
+                            {translate('chooseBtn', language)}
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  );
+                });
+              })()}
             </div>
 
             {/* Custom bottom floating glass action box */}
