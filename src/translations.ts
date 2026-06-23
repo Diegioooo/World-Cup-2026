@@ -241,7 +241,7 @@ export const translations = {
 
     // Step 1: Selection
     selectTitle: "Seleziona 4 Semifinaliste",
-    selectDesc: "Valuta le squadre nazionali qui sotto. Seleziona esattamente quattro squadre che ritieni arriveranno alle semifinali della Coppa del Mondo.",
+    selectDesc: "Valuta le squadre nazionali qui sotto e seleziona le quattro che ritieni possano arrivare in semifinale alla Coppa del Mondo.",
     progression: "Progresso Selezione",
     completeMsg: "✓ Pronto! Fai clic sul pulsante qui sotto per continuare.",
     selectMore: "Seleziona altre {0} squadr{1} per sbloccare gli abbinamenti.",

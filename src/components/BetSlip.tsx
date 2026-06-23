@@ -623,7 +623,7 @@ export default function BetSlip({ state, onPlayFinalGame, onResetTournament, lan
                   Data di scadenza:
                 </p>
                 <p className="font-bold text-yellow-500 font-mono">
-                  30 giugno
+                  6 luglio
                 </p>
               </div>
 

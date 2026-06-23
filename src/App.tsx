@@ -477,7 +477,7 @@ export default function App() {
             </div>
             <div className="text-left leading-none">
               <span className="hidden sm:inline-block text-[9px] text-yellow-500/80 uppercase tracking-widest font-mono font-bold">
-                {language === 'it' ? 'FANTASY GAME UFFICIALE' : 'OFFICIAL FANTASY GAME'}
+                {language === 'it' ? 'FANTASY GAME NON UFFICIALE' : 'UNOFFICIAL FANTASY GAME'}
               </span>
               <h1 className="font-sans font-black text-white tracking-tight uppercase text-base sm:text-lg leading-none">
                 <span className="text-yellow-500 font-display font-bold">BPER</span> <span className="text-slate-200 font-light font-sans">FantaMondiale</span>

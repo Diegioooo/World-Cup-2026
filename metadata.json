@@ -1,6 +1,8 @@
 {
-  "name": "World Cup 2026 Semi-Finals Predictor",
+  "name": "Remix: World Cup 2026 Semi-Finals Predictor",
   "description": "Predict the semi-finalists, simulate final scores, and play an interactive penalty shootout mini-game with local persistence and social card exports.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
